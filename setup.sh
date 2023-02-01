@@ -50,7 +50,7 @@ a2enmod vhost_alias
 a2enmod xml2enc
 echo "[INFO] Copy configuration files"
 cp conf/hosts.conf /etc/apache2/sites-available/hosts.conf
-cp conf/VHosts.conf /etc/apache2/conf-availble/VHosts.conf
+cp conf/VHosts.conf /etc/apache2/conf-available/VHosts.conf
 cp conf/SSLVHosts.conf /etc/apache2/conf-available/SSLVHosts.conf
 cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
 echo "[INFO] Enable config and vhosts-file"
