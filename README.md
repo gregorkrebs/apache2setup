@@ -1,4 +1,4 @@
-Easy Apache2 Setup Script
+Easy and Secure Apache2 Webserver Setup
 
 For install use: bash setup.sh
 
