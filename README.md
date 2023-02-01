@@ -19,7 +19,7 @@
           <td>Use SSLVHost &lt;domain&gt; &lt;path&gt; &lt;certpath&gt; &lt;phpversion&gt;</td>
         </tr>
         <tr>
-          <td>VHost with an specific port e.g 80 or 8080 WITHOUT SSL/TLS!</td>
+          <td>vHost on an specific port e.g 80 or 8080 WITHOUT SSL/TLS!</td>
           <td>Use VHost &lt;domain&gt; &lt;port&gt; &lt;path&gt; &lt;phpversion&gt;</td>
         </tr>
         <tr>
