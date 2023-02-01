@@ -2,7 +2,7 @@
     <h1>Easy and Secure Apache2 Webserver Setup</h1>
     <div class="install-instructions">
       <p>For install use: bash setup.sh</p>
-      <p>The script was tested on Ubuntu Ubuntu 22.04.1 LTS jammy.</p>
+      <p>The script was tested on Ubuntu 22.04.1 LTS jammy.</p>
     </div>
     <div>
       <p>The script will install all required packages (apache2, php8.1 + mods, mariadb), activate recommended apache2 modules and copy config files for a secure and easy to handle webserver.</p>
