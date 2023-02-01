@@ -5,7 +5,7 @@
       <p>The script was tested on Ubuntu 22.04.1 LTS jammy.</p>
     </div>
     <div>
-      <p>The script will install all required packages (apache2, php8.1 + mods, mariadb), activate recommended apache2 modules and copy config files for a secure and easy to handle webserver.</p>
+      <p>The script will install all required packages (apache2, php7.4, php8.1, php8.2 + mods, mariadb), activate recommended apache2 modules and copy config files for a secure and easy to handle webserver.</p>
     </div>
     <div class="config-instructions">
       <p>To use the webserver after install go to the file /etc/apache2/sites-available/hosts.conf.</p>
