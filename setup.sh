@@ -1,4 +1,4 @@
-echi "Automatic Secure Apache2 Webserver Setup"
+echo "Easy and Secure Apache2 Webserver Setup"
 echo "INFO: installing requirements"
 sudo apt update
 sudo apt ugrade
