@@ -11,7 +11,7 @@
       <p>To use the webserver after install go to the file /etc/apache2/sites-available/hosts.conf.</p>
       <table>
         <tr>
-          <th>VHost Type</th>
+          <th>vHost Type</th>
           <th>Instructions</th>
         </tr>
         <tr>
