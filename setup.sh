@@ -1,7 +1,7 @@
 echo "Easy and Secure Apache2 Webserver Setup"
 echo "[INFO] installing requirements"
 sudo apt update
-sudo apt ugrade -y
+sudo apt upgrade -y
 sudo apt install ca-certificates apt-transport-https software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt install apache2 curl php php-apcu php-common php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip mariadb-server mariadb-client
