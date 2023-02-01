@@ -2,7 +2,9 @@ echo "Easy and Secure Apache2 Webserver Setup"
 echo "INFO: installing requirements"
 sudo apt update
 sudo apt ugrade
-sudo apt install python3 php php-apcu php-common curl php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip php8.1-apcu php8.1-bcmath php8.1-cli php8.1-common php8.1-curl php8.1-gd php8.1-gmp php8.1-imagick php8.1-intl php8.1-mbstring php8.1-memcache php8.1-mysql php8.1-opcache php8.1-phpdbg php8.1-readline php8.1-xml php8.1-zip php8.1 apache2 mariadb-server mariadb-client
+sudo apt install ca-certificates apt-transport-https software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt install apache2 curl php php8.1 libapache2-mod-php8.1 php-apcu php-common php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip php8.1-apcu php8.1-bcmath php8.1-cli php8.1-common php8.1-curl php8.1-gd php8.1-gmp php8.1-imagick php8.1-intl php8.1-mbstring php8.1-memcache php8.1-mysql php8.1-opcache php8.1-phpdbg php8.1-readline php8.1-xml php8.1-zip php8.1 mariadb-server mariadb-client
 echo "SUCCESSINFO: installing requirements completed"
 echo "INFO: enable required and recommended mods"
 a2dissite 000-default
