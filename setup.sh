@@ -30,6 +30,7 @@ a2enmod macro
 a2enmod mime
 a2enmod mpm_prefork
 a2enmod negotiation
+a2enmod proxy_fcgi setenvif
 a2enmod php7.4-fpm
 a2enmod php8.1-fpm
 a2enmod php8.2-fpm
