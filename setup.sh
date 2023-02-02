@@ -31,10 +31,6 @@ a2enmod macro
 a2enmod mime
 a2enmod mpm_prefork
 a2enmod negotiation
-a2enmod proxy_fcgi setenvif
-a2enmod php7.4-fpm
-a2enmod php8.1-fpm
-a2enmod php8.2-fpm
 a2enmod proxy
 a2enmod proxy_fdpass
 a2enmod proxy_html
@@ -49,6 +45,11 @@ a2enmod ssl
 a2enmod status
 a2enmod vhost_alias
 a2enmod xml2enc
+a2enmod proxy_fcgi setenvif
+a2enconf php7.4-fpm
+a2enconf php8.0-fpm
+a2enconf php8.1-fpm
+a2enconf php8.2-fpm
 echo "[INFO] Copy configuration files"
 cp conf/hosts.conf /etc/apache2/sites-available/hosts.conf
 cp conf/VHosts.conf /etc/apache2/conf-available/VHosts.conf
