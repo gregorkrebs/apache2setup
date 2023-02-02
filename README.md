@@ -16,15 +16,15 @@
         </tr>
         <tr>
           <td>vHost on port 443 with SSL/TLS</td>
-          <td>Use SSLVHost &lt;domain&gt; &lt;path&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.1/8.2)&gt;</td>
+          <td>Use SSLVHost &lt;domain&gt; &lt;path&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.0/8.1/8.2)&gt;</td>
         </tr>
         <tr>
           <td>vHost on an specific port e.g 80 or 8080 WITHOUT SSL/TLS!</td>
-          <td>Use VHost &lt;domain&gt; &lt;port&gt; &lt;path&gt; &lt;phpversion (7.4/8.1/8.2)&gt;</td>
+          <td>Use VHost &lt;domain&gt; &lt;port&gt; &lt;path&gt; &lt;phpversion (7.4/0.0/8.1/8.2)&gt;</td>
         </tr>
         <tr>
           <td>Reverse proxy</td>
-          <td>Use Proxy &lt;domain&gt; &lt;port&gt; &lt;proxyip&gt; &lt;proxyport&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.1/8.2)&gt;</td>
+          <td>Use Proxy &lt;domain&gt; &lt;port&gt; &lt;proxyip&gt; &lt;proxyport&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.0/8.1/8.2)&gt;</td>
         </tr>
       </table>
       <p>After that you have to reload the apache2 service with "systemctl apache2 reload"</p>
