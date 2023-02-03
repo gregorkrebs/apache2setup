@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td>Reverse proxy</td>
-          <td>Use Proxy &lt;domain&gt; &lt;port&gt; &lt;proxyip&gt; &lt;proxyport&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.0/8.1/8.2)&gt;</td>
+          <td>Use Proxy &lt;domain&gt; &lt;port&gt; &lt;protocol&gt; &lt;proxyip&gt; &lt;proxyport&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.0/8.1/8.2)&gt;</td>
         </tr>
       </table>
       <p>After that you have to reload the apache2 service with "systemctl apache2 reload"</p>
