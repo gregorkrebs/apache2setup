@@ -57,9 +57,9 @@ cp conf/SSLVHosts.conf /etc/apache2/conf-available/SSLVHosts.conf
 cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
 echo "[INFO] Enable config and vhosts-file"
 a2ensite hosts.conf
-a2enconf VHosts.conf
-a2enconf SSLVHosts.conf
-a2enconf Proxys.conf
+a2enconf vHosts.conf
+a2enconf SSLvHosts.conf
+a2enconf proxys.conf
 echo "[INFO] Restart apache2"
 systemctl restart apache2
 echo "[INFO] Installation successfully completed"
