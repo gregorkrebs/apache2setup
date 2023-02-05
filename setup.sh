@@ -52,8 +52,8 @@ a2enconf php8.1-fpm
 a2enconf php8.2-fpm
 echo "[INFO] Copy configuration files"
 cp conf/hosts.conf /etc/apache2/sites-available/hosts.conf
-cp conf/VHosts.conf /etc/apache2/conf-available/VHosts.conf
-cp conf/SSLVHosts.conf /etc/apache2/conf-available/SSLVHosts.conf
+cp conf/vHosts.conf /etc/apache2/conf-available/VHosts.conf
+cp conf/SSLvHosts.conf /etc/apache2/conf-available/SSLVHosts.conf
 cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
 echo "[INFO] Enable config and vhosts-file"
 a2ensite hosts.conf
