@@ -16,11 +16,11 @@
         </tr>
         <tr>
           <td>vHost on port 443 with SSL/TLS</td>
-          <td>Use SSLVHost &lt;domain&gt; &lt;path&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.0/8.1/8.2)&gt;</td>
+          <td>Use SSLvHost &lt;domain&gt; &lt;path&gt; &lt;certpath&gt; &lt;phpversion (7.4/8.0/8.1/8.2)&gt;</td>
         </tr>
         <tr>
           <td>vHost on an specific port e.g 80 or 8080 WITHOUT SSL/TLS!</td>
-          <td>Use VHost &lt;domain&gt; &lt;port&gt; &lt;path&gt; &lt;phpversion (7.4/0.0/8.1/8.2)&gt;</td>
+          <td>Use vHost &lt;domain&gt; &lt;port&gt; &lt;path&gt; &lt;phpversion (7.4/0.0/8.1/8.2)&gt;</td>
         </tr>
         <tr>
           <td>Reverse proxy</td>
