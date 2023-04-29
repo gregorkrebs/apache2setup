@@ -59,6 +59,7 @@ echo "[INFO] Enable config and vhosts-file"
 a2ensite hosts.conf
 a2enconf vHosts.conf
 a2enconf SSLvHosts.conf
+a2enconf SSLProxys.conf
 a2enconf Proxys.conf
 echo "[INFO] Restart apache2"
 systemctl restart apache2
