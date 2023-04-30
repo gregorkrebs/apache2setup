@@ -1,7 +1,7 @@
   <body>
     <h1>Easy and Secure Apache2 Webserver Setup</h1>
     <div class="install-instructions">
-      <p>For install use: bash setup.sh</p>
+      <p>For install use: >> bash setup-ubuntu.sh << (For Ubuntu) or >> bash setup-debian.sh << (If you use Debian)</p>
       <p>The script was tested on Ubuntu 22.04.1 LTS jammy.</p>
     </div>
     <div>
