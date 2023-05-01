@@ -34,7 +34,7 @@
       <p>After that you have to reload the apache2 service with "systemctl reload apache2"</p><br>
       
       (*) ⚠ Note: You need a valid SSL certificate. Certbot does not work yet. This configuration is perfect for a Cloudflare proxied web server with a Cloudflare CA-certificate.
-          ⚠ You need 3 certificate files. First: privkey.pem, second: cert.pem, third: ca.pem (you can paste the content of cert.pem into ca.pem to get a ca certificate.
+          ⚠ You need 2 certificate files. First: privkey.pem, second: cert.pem
       
 
 
