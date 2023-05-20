@@ -57,6 +57,7 @@ cp conf/vHosts.conf /etc/apache2/conf-available/vHosts.conf
 cp conf/SSLvHosts.conf /etc/apache2/conf-available/SSLvHosts.conf
 cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
 cp conf/SSLProxys.conf /etc/apache2/conf-available/SSLProxys.conf
+cp conf/LE-template.conf /etc/apache2/sites-available/LE-template.conf
 echo "[INFO] Enable config and vhosts-file"
 a2ensite hosts.conf
 a2enconf vHosts.conf
