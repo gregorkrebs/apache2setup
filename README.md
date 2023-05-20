@@ -41,7 +41,7 @@
       <p>Use Let's Encrypt / Certbot</p>
       1. Copy /etc/apache2/sites-available/LE-template.conf to /etc/apache2/sites-available/yourdomain.tld.conf<br>
       2. Edit /etc/apache2/sites-available/yourdomain.tld.conf and replace ALL [YOURDOMAIN.TLD] with your Domain.<br>
-      3. Create directory "mkdir /var/www/youtdomain.tld", set the rights "chown -R www-data:www-data /var/www/yourdomain.tld" and activate your site with "a2ensite yourdomain.tld.conf"<br>
+      3. Create directory "mkdir /var/www/yourdomain.tld", set the rights "chown -R www-data:www-data /var/www/yourdomain.tld" and activate your site with "a2ensite yourdomain.tld.conf"<br>
       4. Now run certbot with "certbot --apache". Follow the instructions.<br>
   <div class="final-instruction">
       <p><br>That's all!</p>
