@@ -50,9 +50,9 @@ a2enconf php8.0-fpm
 a2enconf php8.1-fpm
 a2enconf php8.2-fpm
 echo "[INFO] Copy configuration files"
-cp conf/hosts.conf /etc/apache2/sites-available/hosts.conf
+cp sites/hosts.conf /etc/apache2/sites-available/hosts.conf
+cp sites/LE-template.conf /etc/apache2/sites-available/LE-template.conf
 cp conf/vHosts.conf /etc/apache2/conf-available/vHosts.conf
-cp conf/LE-template.conf /etc/apache2/sites-available/LE-template.conf
 cp conf/SSLvHosts.conf /etc/apache2/conf-available/SSLvHosts.conf
 cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
 cp conf/SSLProxys.conf /etc/apache2/conf-available/SSLProxys.conf
