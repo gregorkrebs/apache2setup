@@ -2,8 +2,9 @@
     <h1>Easy and Secure Apache2 Webserver Setup</h1>
     <div class="install-instructions">
       <p>For install use: >> bash setup-ubuntu.sh << (For Ubuntu) or >> bash setup-debian.sh << (If you use Debian)</p>
-      <p>The script was tested on Ubuntu 22.04.1 LTS jammy.</p>
+      <p>The script was tested on Ubuntu 22.04.1 LTS jammy and Debian 11.</p>
     </div>
+	<hr>
     <div>
       <p>The script will install all required packages (apache2, php (7.4, 8.0, 8.1, 8.2 + mods, mariadb), activate recommended apache2 modules and copy config files for a secure and easy to handle webserver.</p>
     </div>
@@ -33,14 +34,16 @@
       </table>
       <p>After that you have to reload the apache2 service with "systemctl reload apache2"</p><br>
       
-      (*) ⚠ Note: You need a valid SSL certificate. Certbot does not work yet. This configuration is perfect for a Cloudflare proxied web server with a Cloudflare CA-certificate.
-          ⚠ You need 2 certificate files. First: privkey.pem, second: cert.pem
-      
-
-
-
+      (*) ⚠ Note: You need a valid SSL certificate. This configuration is perfect when you have your own SSL certificate or for a Cloudflare proxied web server with a Cloudflare CA-certificate.
+          ⚠ You need min 2 certificate files. First: privkey.pem, second: cert.pem. (Optional ca.pem. However, this must be activated in the Config)
   </div>
-    <div class="final-instruction">
-      <p>That's all!</p>
+<hr>
+      <p>Use Let's Encrypt / Certbot</p>
+      1. Copy /etc/apache2/sites-available/LE-template.conf to /etc/apache2/sites-available/yourdomain.tld.conf<br>
+      2. Edit /etc/apache2/sites-available/yourdomain.tld.conf and replace ALL [YOURDOMAIN.TLD] with your Domain.<br>
+      3. Create directory "mkdir /var/www/youtdomain.tld", set the rights "chown -R www-data:www-data /var/www/youtdomain.tld" and activate your site with "a2ensite yourdomain.tld.conf"<br>
+      4. Now run certbot with "certbot --apache". Follow the instructions.<br>
+  <div class="final-instruction">
+      <p><br>That's all!</p>
     </div>
   </body>
