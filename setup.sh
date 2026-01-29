@@ -3,12 +3,17 @@ set -euo pipefail
 
 echo "Easy and Secure Apache2 Webserver Setup"
 echo "[INFO] installing requirements"
+export DEBIAN_FRONTEND=noninteractive
+APT_INSTALL_FLAGS=(-y)
+if [ "${APT_NO_INSTALL_RECOMMENDS:-0}" = "1" ]; then
+    APT_INSTALL_FLAGS+=(--no-install-recommends)
+fi
 sudo apt update
-sudo apt upgrade -y
+sudo apt-get -y upgrade
 OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2)
 OS_ID=${OS_ID//\"/}
 echo "[INFO] Installing requirements"
-sudo apt install ca-certificates apt-transport-https software-properties-common certbot python3-certbot-apache -y
+sudo apt install ca-certificates software-properties-common certbot python3-certbot-apache "${APT_INSTALL_FLAGS[@]}"
 case $OS_ID in
     ubuntu)
         echo "Ubuntu"
@@ -22,7 +27,7 @@ case $OS_ID in
         ;;
 esac
 sudo apt update
-sudo apt install apache2 curl php php-apcu php-common php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip mariadb-server mariadb-client -y
+sudo apt install apache2 curl php php-apcu php-common php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip mariadb-server mariadb-client "${APT_INSTALL_FLAGS[@]}"
 
 php_versions=(7.4 8.0 8.1 8.2 8.3)
 for version in "${php_versions[@]}"; do
@@ -32,7 +37,7 @@ for version in "${php_versions[@]}"; do
             "php$version-curl" "php$version-gd" "php$version-gmp" "php$version-imagick" \
             "php$version-intl" "php$version-mbstring" "php$version-memcache" \
             "php$version-mysql" "php$version-opcache" "php$version-phpdbg" \
-            "php$version-readline" "php$version-xml" "php$version-zip" -y
+            "php$version-readline" "php$version-xml" "php$version-zip" "${APT_INSTALL_FLAGS[@]}"
     else
         echo "[WARN] PHP $version is not available in this repository, skipping."
     fi
