@@ -7,15 +7,29 @@ sudo apt update
 sudo apt upgrade -y
 OS_ID=$(grep '^ID=' /etc/os-release | cut -d'=' -f2)
 OS_ID=${OS_ID//\"/}
+USE_EXTERNAL_REPOS=${USE_EXTERNAL_REPOS:-true}
 echo "[INFO] Installing requirements"
-sudo apt install ca-certificates apt-transport-https software-properties-common certbot python3-certbot-apache -y
+sudo apt install ca-certificates apt-transport-https curl software-properties-common certbot python3-certbot-apache -y
 case $OS_ID in
     ubuntu)
         echo "Ubuntu"
-        sudo add-apt-repository ppa:ondrej/php -y
+        if [[ "$USE_EXTERNAL_REPOS" == "true" ]]; then
+            sudo add-apt-repository ppa:ondrej/php -y
+        else
+            echo "[INFO] External repositories disabled, skipping PPA."
+        fi
         ;;
     debian)
         echo "Debian"
+        if [[ "$USE_EXTERNAL_REPOS" == "true" ]]; then
+            sudo apt install ca-certificates apt-transport-https lsb-release gnupg -y
+            sudo mkdir -p /etc/apt/keyrings
+            curl -fsSL https://packages.sury.org/php/apt.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/sury-php.gpg
+            echo "deb [signed-by=/etc/apt/keyrings/sury-php.gpg] https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/php.list > /dev/null
+            sudo apt update
+        else
+            echo "[INFO] External repositories disabled, skipping Sury packages."
+        fi
         ;;
     *)
         echo "Unknown distribution: $OS_ID"
