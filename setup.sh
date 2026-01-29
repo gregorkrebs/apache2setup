@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ $EUID -ne 0 ]]; then
+    echo "[INFO] Elevating privileges for setup"
+    sudo -v
+    exec sudo -E bash "$0" "$@"
+fi
+
 echo "Easy and Secure Apache2 Webserver Setup"
 echo "[INFO] installing requirements"
 sudo apt update
@@ -104,12 +110,12 @@ for version in "${php_versions[@]}"; do
     fi
 done
 echo "[INFO] Copy configuration files"
-cp sites/hosts.conf /etc/apache2/sites-available/hosts.conf
-cp sites/LE-template.conf /etc/apache2/sites-available/LE-template.conf
-cp conf/vHosts.conf /etc/apache2/conf-available/vHosts.conf
-cp conf/SSLvHosts.conf /etc/apache2/conf-available/SSLvHosts.conf
-cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
-cp conf/SSLProxys.conf /etc/apache2/conf-available/SSLProxys.conf
+sudo cp sites/hosts.conf /etc/apache2/sites-available/hosts.conf
+sudo cp sites/LE-template.conf /etc/apache2/sites-available/LE-template.conf
+sudo cp conf/vHosts.conf /etc/apache2/conf-available/vHosts.conf
+sudo cp conf/SSLvHosts.conf /etc/apache2/conf-available/SSLvHosts.conf
+sudo cp conf/Proxys.conf /etc/apache2/conf-available/Proxys.conf
+sudo cp conf/SSLProxys.conf /etc/apache2/conf-available/SSLProxys.conf
 echo "[INFO] Enable config and vhosts-file"
 a2ensite hosts.conf
 a2enconf vHosts.conf
