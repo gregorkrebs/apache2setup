@@ -41,39 +41,49 @@ done
 echo "[INFO] enable required and recommended mods"
 a2dissite 000-default
 a2dissite default-ssl
-a2enmod access_compat
-a2enmod alias
-a2enmod auth_basic
-a2enmod authn_core
-a2enmod authn_file
-a2enmod authz_core
-a2enmod authz_host
-a2enmod authz_user
-a2enmod autoindex
-a2enmod brotli
-a2enmod deflate
-a2enmod dir
-a2enmod filter
-a2enmod headers
-a2enmod http2
-a2enmod macro
-a2enmod mime
-a2enmod mpm_prefork
-a2enmod negotiation
-a2enmod proxy
-a2enmod proxy_fdpass
-a2enmod proxy_html
-a2enmod proxy_http2
-a2enmod proxy_http
-a2enmod reqtimeout
-a2enmod rewrite
-a2enmod setenvif
-a2enmod socache_shmcb
-a2enmod ssl
-a2enmod status
-a2enmod vhost_alias
-a2enmod xml2enc
-a2enmod proxy_fcgi proxy_wstunnel setenvif
+apache_mods=(
+    access_compat
+    alias
+    auth_basic
+    authn_core
+    authn_file
+    authz_core
+    authz_host
+    authz_user
+    autoindex
+    brotli
+    deflate
+    dir
+    filter
+    headers
+    http2
+    macro
+    mime
+    mpm_prefork
+    negotiation
+    proxy
+    proxy_fcgi
+    proxy_fdpass
+    proxy_html
+    proxy_http
+    proxy_http2
+    proxy_wstunnel
+    reqtimeout
+    rewrite
+    setenvif
+    socache_shmcb
+    ssl
+    status
+    vhost_alias
+    xml2enc
+)
+for mod in "${apache_mods[@]}"; do
+    if [ -e "/etc/apache2/mods-available/${mod}.load" ] || a2query -m "$mod" >/dev/null 2>&1; then
+        a2enmod "$mod"
+    else
+        echo "[WARN] Apache module ${mod} is not available, skipping."
+    fi
+done
 for version in "${php_versions[@]}"; do
     if [ -e "/etc/apache2/conf-available/php$version-fpm.conf" ]; then
         a2enconf "php$version-fpm"
