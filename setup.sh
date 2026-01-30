@@ -44,7 +44,16 @@ esac
 sudo apt update
 sudo apt install apache2 curl php php-apcu php-common php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip mariadb-server mariadb-client -y
 
-php_versions=(7.4 8.0 8.1 8.2 8.3)
+mapfile -t php_versions < <(
+    apt-cache search -n '^php[0-9]+\\.[0-9]+$' \
+        | awk '{print $1}' \
+        | sed 's/^php//' \
+        | sort -V \
+        | awk -F. '($1 > 8) || ($1 == 8 && $2 >= 1)'
+)
+if [ ${#php_versions[@]} -eq 0 ]; then
+    php_versions=(8.1 8.2 8.3 8.4)
+fi
 for version in "${php_versions[@]}"; do
     if apt-cache show "php$version" >/dev/null 2>&1; then
         sudo apt install "php$version" "php$version-fpm" "libapache2-mod-php$version" \
