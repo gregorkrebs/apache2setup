@@ -24,15 +24,56 @@ esac
 sudo apt update
 sudo apt install apache2 curl php php-apcu php-common php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-memcache php-mysql php-zip mariadb-server mariadb-client -y
 
+PHP_MODE=${PHP_MODE:-}
+if [ -z "$PHP_MODE" ]; then
+    echo "[INFO] Select PHP handler mode:"
+    echo "  1) FPM (recommended for high concurrency)"
+    echo "  2) mod_php (Apache module)"
+    read -r -p "Choose [1/2] (default: 1): " php_mode_input
+    case "${php_mode_input}" in
+        2|mod_php|mod-php|modphp)
+            PHP_MODE="mod_php"
+            ;;
+        1|fpm|"")
+            PHP_MODE="fpm"
+            ;;
+        *)
+            echo "[WARN] Unknown selection '${php_mode_input}', defaulting to FPM."
+            PHP_MODE="fpm"
+            ;;
+    esac
+fi
+echo "[INFO] Using PHP mode: ${PHP_MODE}"
+
 php_versions=(7.4 8.0 8.1 8.2 8.3)
 for version in "${php_versions[@]}"; do
     if apt-cache show "php$version" >/dev/null 2>&1; then
-        sudo apt install "php$version" "php$version-fpm" "libapache2-mod-php$version" \
-            "php$version-apcu" "php$version-bcmath" "php$version-cli" "php$version-common" \
-            "php$version-curl" "php$version-gd" "php$version-gmp" "php$version-imagick" \
-            "php$version-intl" "php$version-mbstring" "php$version-memcache" \
-            "php$version-mysql" "php$version-opcache" "php$version-phpdbg" \
-            "php$version-readline" "php$version-xml" "php$version-zip" -y
+        php_packages=(
+            "php$version"
+            "php$version-apcu"
+            "php$version-bcmath"
+            "php$version-cli"
+            "php$version-common"
+            "php$version-curl"
+            "php$version-gd"
+            "php$version-gmp"
+            "php$version-imagick"
+            "php$version-intl"
+            "php$version-mbstring"
+            "php$version-memcache"
+            "php$version-mysql"
+            "php$version-opcache"
+            "php$version-phpdbg"
+            "php$version-readline"
+            "php$version-xml"
+            "php$version-zip"
+        )
+        if [ "$PHP_MODE" = "fpm" ]; then
+            php_packages+=("php$version-fpm")
+        else
+            php_packages+=("libapache2-mod-php$version")
+        fi
+        sudo apt install "${php_packages[@]}" -y
     else
         echo "[WARN] PHP $version is not available in this repository, skipping."
     fi
@@ -58,7 +99,6 @@ a2enmod headers
 a2enmod http2
 a2enmod macro
 a2enmod mime
-a2enmod mpm_prefork
 a2enmod negotiation
 a2enmod proxy
 a2enmod proxy_fdpass
@@ -73,12 +113,20 @@ a2enmod ssl
 a2enmod status
 a2enmod vhost_alias
 a2enmod xml2enc
-a2enmod proxy_fcgi proxy_wstunnel setenvif
-for version in "${php_versions[@]}"; do
-    if [ -e "/etc/apache2/conf-available/php$version-fpm.conf" ]; then
-        a2enconf "php$version-fpm"
-    fi
-done
+a2enmod proxy_wstunnel
+if [ "$PHP_MODE" = "fpm" ]; then
+    a2enmod proxy_fcgi setenvif
+    a2dismod mpm_prefork
+    a2enmod mpm_event
+    for version in "${php_versions[@]}"; do
+        if [ -e "/etc/apache2/conf-available/php$version-fpm.conf" ]; then
+            a2enconf "php$version-fpm"
+        fi
+    done
+else
+    a2enmod mpm_prefork
+    a2dismod proxy_fcgi
+fi
 echo "[INFO] Copy configuration files"
 cp sites/hosts.conf /etc/apache2/sites-available/hosts.conf
 cp sites/LE-template.conf /etc/apache2/sites-available/LE-template.conf
